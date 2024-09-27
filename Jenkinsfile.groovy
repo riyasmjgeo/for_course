@@ -4,13 +4,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from the repository
-                git 'https://your-repo-url.git'
+                git 'https://github.com/riyasmjgeo/for_course.git'
             }
         }
         stage('Run Unit Test') {
             steps {
                 // Run the Python script
-                sh 'python3 xx.py'
+                sh 'python3 unit_test.py'
             }
         }
     }
