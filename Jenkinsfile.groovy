@@ -1,17 +1,24 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the code from the repository
-                git 'https://github.com/riyasmjgeo/for_course.git'
+                // Checkout the code from Git
+                git url: 'https://github.com/riyasmjgeo/for_course.git', branch: 'main'
             }
         }
-        stage('Run Unit Test') {
+        stage('Run Unit Tests') {
             steps {
-                // Run the Python script
-                sh 'python3 unit_test.py'
+                // Run the Python unit tests
+                sh 'python -m unittest unit_test.py'
             }
+        }
+    }
+    post {
+        always {
+            // Archive test results
+            junit 'test-results.xml'
         }
     }
 }
